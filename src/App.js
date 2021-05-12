@@ -1,14 +1,37 @@
 import './App.css';
 import ItemsList from './ItemsList'
+import {useState} from 'react'
+import Home from './Home'
+import Contact from './Contact'
+import NotFound from './404'
+import ProductDetail from './ProductDetail'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 
-function App() {  
+function App() {
   return (
-    <>
-      <div className="App-header"></div>
-      <div className="App-navigation"></div>
+    <Router>
+      <Switch>
+        <Route path="/contacto">
+          <Contact />
+        </Route>
 
-      <ItemsList />
-    </>
+        <Route path="/productos/:id">
+          <ProductDetail />
+        </Route>
+        
+        <Route path="/" exact>
+          <Home />
+        </Route>
+
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
